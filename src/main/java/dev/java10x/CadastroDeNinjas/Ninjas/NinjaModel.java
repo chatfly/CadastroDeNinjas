@@ -23,7 +23,8 @@ public class NinjaModel {
     private Long id;
 
     private String nome;
-
+    
+    @Column(unique = true)
     private String email;
 
     private int idade;
