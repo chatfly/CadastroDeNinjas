@@ -1,6 +1,10 @@
-package dev.java10x.CadastroDeNinjas;
+package dev.java10x.CadastroDeNinjas.Ninjas;
 
+import dev.java10x.CadastroDeNinjas.Equipamentos.EquipamentosModel;
 import jakarta.persistence.*;
+
+import java.util.List;
+
 
 // Entity ele transforma uma classe em uma entidade do BD
 // JPA = Java Persistance API
@@ -11,9 +15,17 @@ public class NinjaModel {
     @Id // Identifica que o atributo logo abaixo é um ID
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Estratégia que leva ao gerar um ID novo
     private Long id;
+
     private String nome;
+
     private String email;
+
     private int idade;
+
+    // @ManyToOne um ninja tem um unico equipamento
+    // @OneToMany um ninja tem vários equipamentos
+    @OneToMany (mappedBy = "equipamentos")
+    private List<EquipamentosModel> equipamentos;
 
     public NinjaModel() {
     }
