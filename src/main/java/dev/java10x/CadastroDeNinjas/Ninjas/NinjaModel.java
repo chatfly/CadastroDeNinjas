@@ -20,18 +20,24 @@ public class NinjaModel {
 
     @Id // Identifica que o atributo logo abaixo é um ID
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Estratégia que leva ao gerar um ID novo
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "nome")
     private String nome;
 
     @Column(unique = true)
     private String email;
 
+    @Column(name = "img_url")
+    private String imgUrl;
+
+    @Column(name = "idade")
     private int idade;
 
     // @ManyToOne um ninja tem um unico equipamento
     // @OneToMany um ninja tem vários equipamentos
-    @OneToMany (mappedBy = "equipamentos")
+    @OneToMany (mappedBy = "ninja")
     private List<EquipamentosModel> equipamentos;
 
 
