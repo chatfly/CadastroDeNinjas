@@ -3,7 +3,7 @@ package dev.java10x.CadastroDeNinjas.Equipamentos;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("missoes")
+@RequestMapping("/missoes")
 public class EquipamentosController {
 
     // GET -- Mandar uma requisição para mostrar os equipamentos
