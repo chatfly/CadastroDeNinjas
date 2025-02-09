@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Equipamentos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ public class EquipamentosModel {
     // Um equipamento pode ter apenas um ninja
     @ManyToOne
     @JoinColumn (name = "ninja_id") // Foreign Key ou chave estrangeira
+    @JsonIgnore
     private NinjaModel ninja;
 
 }

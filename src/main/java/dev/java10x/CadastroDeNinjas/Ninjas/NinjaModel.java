@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Ninjas;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.CadastroDeNinjas.Equipamentos.EquipamentosModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
