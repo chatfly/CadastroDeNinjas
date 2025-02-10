@@ -39,6 +39,7 @@ public class NinjaModel {
     // @ManyToOne um ninja tem um unico equipamento
     // @OneToMany um ninja tem vários equipamentos
     @OneToMany (mappedBy = "ninja")
+    @JsonIgnore
     private List<EquipamentosModel> equipamentos;
 
 

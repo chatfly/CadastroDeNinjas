@@ -25,7 +25,6 @@ public class EquipamentosModel {
     // Um equipamento pode ter apenas um ninja
     @ManyToOne
     @JoinColumn (name = "ninja_id") // Foreign Key ou chave estrangeira
-    @JsonIgnore
     private NinjaModel ninja;
 
 }
