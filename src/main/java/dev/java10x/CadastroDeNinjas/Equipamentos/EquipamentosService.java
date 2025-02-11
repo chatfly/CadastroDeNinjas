@@ -1,37 +1,50 @@
 package dev.java10x.CadastroDeNinjas.Equipamentos;
 
+import dev.java10x.CadastroDeNinjas.Ninjas.NinjaRepository;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EquipamentosService {
 
+    private final NinjaRepository ninjaRepository;
     private EquipamentosRepository equipamentosRepository;
+    private EquipamentosMapper equipamentosMapper;
 
-    public EquipamentosService(EquipamentosRepository equipamentosRepository) {
+    public EquipamentosService(EquipamentosRepository equipamentosRepository, EquipamentosMapper equipamentosMapper, NinjaRepository ninjaRepository) {
         this.equipamentosRepository = equipamentosRepository;
+        this.equipamentosMapper = equipamentosMapper;
+        this.ninjaRepository = ninjaRepository;
     }
 
-    public List<EquipamentosModel> listarEquipamentos() {
-        return equipamentosRepository.findAll();
+    public List<EquipamentosDTO> listarEquipamentos() {
+        List<EquipamentosModel> equipamentos = equipamentosRepository.findAll();
+        return equipamentos.stream()
+                .map(equipamentosMapper::map)
+                .collect(Collectors.toList());
     }
 
-    public EquipamentosModel listarEquipamentoPorId(Long id) {
+    public EquipamentosDTO listarEquipamentoPorId(Long id) {
         Optional<EquipamentosModel> equipamentoPorId = equipamentosRepository.findById(id);
-        return equipamentoPorId.orElse(null);
+        return equipamentoPorId.map(equipamentosMapper::map).orElse(null);
     }
 
-    public EquipamentosModel criarEquipamento(EquipamentosModel equipamento) {
-        return equipamentosRepository.save(equipamento);
+    public EquipamentosDTO criarEquipamento(EquipamentosDTO equipamentosDTO) {
+        EquipamentosModel equipamento = equipamentosMapper.map(equipamentosDTO);
+        equipamento = equipamentosRepository.save(equipamento);
+        return equipamentosMapper.map(equipamento);
     }
 
-    public EquipamentosModel atualizarEquipamento(Long id, EquipamentosModel equipamentoAtualizado) {
-        if(equipamentosRepository.existsById(id)){
+    public EquipamentosDTO atualizarEquipamento(Long id, EquipamentosDTO equipamentosDTO) {
+        Optional<EquipamentosModel> equipamentoExistente = equipamentosRepository.findById(id);
+        if(equipamentoExistente.isPresent()) {
+            EquipamentosModel equipamentoAtualizado = equipamentosMapper.map(equipamentosDTO);
             equipamentoAtualizado.setId(id);
-            return equipamentosRepository.save(equipamentoAtualizado);
+            EquipamentosModel equipamentoSalvo = equipamentosRepository.save(equipamentoAtualizado);
+            return equipamentosMapper.map(equipamentoSalvo);
         }
         return null;
     }
