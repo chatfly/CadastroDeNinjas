@@ -32,9 +32,9 @@ public class EquipamentosController {
     }
 
     // PUT -- Mandar uma requisição para alterar um equipamento
-    @PutMapping("/alterar")
-    public String alterarEquipamento() {
-        return "Equipamento alterado com sucesso";
+    @PutMapping("/alterar/{id}")
+    public EquipamentosModel alterarEquipamento(@PathVariable Long id, @RequestBody EquipamentosModel equipamentoAtualizado) {
+        return equipamentosService.atualizarEquipamento(id, equipamentoAtualizado);
     }
 
     // DELETE -- Mandar uma requisição para deletar um equipamento

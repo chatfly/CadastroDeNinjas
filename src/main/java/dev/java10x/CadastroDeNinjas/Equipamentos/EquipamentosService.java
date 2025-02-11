@@ -28,6 +28,14 @@ public class EquipamentosService {
         return equipamentosRepository.save(equipamento);
     }
 
+    public EquipamentosModel atualizarEquipamento(Long id, EquipamentosModel equipamentoAtualizado) {
+        if(equipamentosRepository.existsById(id)){
+            equipamentoAtualizado.setId(id);
+            return equipamentosRepository.save(equipamentoAtualizado);
+        }
+        return null;
+    }
+
     public void deletarEquipamento(Long id) {
         equipamentosRepository.deleteById(id);
     }
