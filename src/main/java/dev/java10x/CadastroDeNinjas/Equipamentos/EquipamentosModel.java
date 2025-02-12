@@ -1,17 +1,18 @@
 package dev.java10x.CadastroDeNinjas.Equipamentos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "tb_equipamentos")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class EquipamentosModel {
 
     @Id

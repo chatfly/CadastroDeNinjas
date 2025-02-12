@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "equipamentos")
 public class NinjaModel {
 
     @Id // Identifica que o atributo logo abaixo é um ID
@@ -43,6 +45,7 @@ public class NinjaModel {
     // @OneToMany um ninja tem vários equipamentos
     @OneToMany (mappedBy = "ninja")
     @JsonIgnore
+    @Column(name = "equipamentos")
     private List<EquipamentosModel> equipamentos;
 
 
