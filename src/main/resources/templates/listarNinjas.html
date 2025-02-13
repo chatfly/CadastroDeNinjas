@@ -5,14 +5,97 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Tabela de Ninjas</title>
+  <style th:inline="none">
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 2rem;
+      background-color: #f0f2f5;
+    }
+
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 1.2rem;
+      text-align: left;
+      border-bottom: 1px solid #ecf0f1;
+    }
+
+    th {
+      background-color: #3498db;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.9em;
+    }
+
+    tr:hover {
+      background-color: #f8f9fa;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+
+    img {
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #bdc3c7;
+    }
+
+    .acoes {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .acoes a {
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      font-size: 0.9em;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .acoes a:first-child {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .acoes a:nth-child(2) {
+      background-color: #f1c40f;
+      color: #2c3e50;
+    }
+
+    .acoes a:last-child {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
   <h1>Lista de Ninjas</h1>
   <table>
     <thead>
       <tr>
-        <th>ID</th>
         <th>Imagem</th>
+        <th>ID</th>
         <th>Nome</th>
         <th>Idade</th>
         <th>Email</th>
@@ -27,11 +110,10 @@
         <td th:text="${ninja.idade}"></td>
         <td th:text="${ninja.email}"></td>
         <td th:text="${ninja.rank}"></td>
-
-        <td>
-          <a>Ver detalhes</a>
-          <a>Alterar</a>
-          <a href="@{/ninjas/ui/deletar/{id}}">Deletar</a>
+        <td class="acoes">
+          <a th:href="@{/ninjas/ui/#/{id}(id=${ninja.id})}">Ver detalhes</a>
+          <a th:href="@{/ninjas/ui/#/{id}(id=${ninja.id})}">Alterar</a>
+          <a th:href="@{/ninjas/ui/deletar/{id}(id=${ninja.id})}">Deletar</a>
         </td>
       </tr>
     </tbody>
