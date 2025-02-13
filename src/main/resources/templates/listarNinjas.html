@@ -7,10 +7,10 @@
   <title>Tabela de Ninjas</title>
   <style th:inline="none">
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 2rem;
-      background-color: #f0f2f5;
-    }
+                             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                             margin: 2rem;
+                             background-color: #f0f2f5;
+                           }
 
     h1 {
       color: #2c3e50;
@@ -90,33 +90,34 @@
   </style>
 </head>
 <body>
-  <h1>Lista de Ninjas</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Imagem</th>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Idade</th>
-        <th>Email</th>
-        <th>Rank</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr th:each="ninja: ${ninjas}">
-        <td><img th:src="${ninja.imgUrl}" width="100px" height="100px"></td>
-        <td th:text="${ninja.id}"></td>
-        <td th:text="${ninja.nome}"></td>
-        <td th:text="${ninja.idade}"></td>
-        <td th:text="${ninja.email}"></td>
-        <td th:text="${ninja.rank}"></td>
-        <td class="acoes">
-          <a th:href="@{/ninjas/ui/#/{id}(id=${ninja.id})}">Ver detalhes</a>
-          <a th:href="@{/ninjas/ui/#/{id}(id=${ninja.id})}">Alterar</a>
-          <a th:href="@{/ninjas/ui/deletar/{id}(id=${ninja.id})}">Deletar</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<a th:href="@{/ninjas/ui/adicionar}">Adicionar ninja</a>
+<h1>Lista de Ninjas</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Imagem</th>
+    <th>ID</th>
+    <th>Nome</th>
+    <th>Idade</th>
+    <th>Email</th>
+    <th>Rank</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="ninja : ${ninjas}">
+    <td><img th:src="${ninja.imgUrl}" width="100px" height="100px"></td>
+    <td th:text="${ninja.id}"></td>
+    <td th:text="${ninja.nome}"></td>
+    <td th:text="${ninja.idade}"></td>
+    <td th:text="${ninja.email}"></td>
+    <td th:text="${ninja.rank}"></td>
+    <td class="acoes">
+      <a th:href="@{/ninjas/ui/listar/{id}(id=${ninja.id})}">Ver detalhes</a>
+      <a th:href="@{/ninjas/ui/editar/{id}(id=${ninja.id})}">Alterar</a>
+      <a th:href="@{/ninjas/ui/deletar/{id}(id=${ninja.id})}">Deletar</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
 </body>
 </html>

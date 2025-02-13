@@ -90,6 +90,6 @@
   <p><strong>Idade:</strong> <span th:text="${ninja.idade}"></span></p>
   <p><strong>Rank:</strong> <span th:text="${ninja.rank}"></span></p>
 </div>
-<a href="/ninjas/ui/listar">Voltar para a lista de ninjas</a>
+<a th:href="@{/ninjas/ui/listar}">Voltar para a lista de ninjas</a>
 </body>
 </html>
