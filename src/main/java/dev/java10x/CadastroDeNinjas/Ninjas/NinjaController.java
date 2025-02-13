@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin // TODO: ANOTAR SOBRE CROSSORIGIN
 @RequestMapping("/ninjas")
 public class NinjaController {
 
+    //TODO: ANOTAR SOBRE FINAL EM INJECOES DE DEPENDENCIA
     private final NinjaService ninjaService;
 
     public NinjaController(NinjaService ninjaService) {
@@ -19,13 +21,13 @@ public class NinjaController {
     @PostMapping("/criar")
     public ResponseEntity<String> criarNinja(@RequestBody NinjaDTO ninja) {
         NinjaDTO novoNinja = ninjaService.criarNinja(ninja);
-        return ResponseEntity.status(HttpStatus.CREATED)
+        return ResponseEntity.status(HttpStatus.CREATED) // TODO: ANOTAR SOBRE OS TIPOS DE RESPONSE ENTITY E O BODY
                 .body("Ninja criado com sucesso: " + novoNinja.getNome() + " (ID): " + novoNinja.getId());
     }
 
     @GetMapping("/listar")
     public ResponseEntity<List<NinjaDTO>> listarNinjas() {
-        return ResponseEntity.ok(ninjaService.listarNinjas());
+        return ResponseEntity.ok(ninjaService.listarNinjas()); // TODO: ANOTAR SOBRE O METODO OK DO RESPONSE ENTITY
     }
 
     @GetMapping("/listar/{id}")
@@ -42,7 +44,7 @@ public class NinjaController {
     }
 
     @PutMapping("/alterar/{id}")
-    public ResponseEntity<?> alterarNinjaPorId(@PathVariable Long id, @RequestBody NinjaDTO ninjaAtualizado) {
+    public ResponseEntity<?> alterarNinjaPorId(@PathVariable Long id, @RequestBody NinjaDTO ninjaAtualizado) { // TODO: ANOTAR SOBRE OS GENERICS EM RESPONSE ENTITY
 
         NinjaDTO ninja = ninjaService.atualizarNinja(id, ninjaAtualizado);
 

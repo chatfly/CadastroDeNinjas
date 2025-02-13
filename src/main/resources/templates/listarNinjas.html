@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tabela de Ninjas</title>
+</head>
+<body>
+  <h1>Lista de Ninjas</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Imagem</th>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Email</th>
+        <th>Rank</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="ninja: ${ninjas}">
+        <td><img th:src="${ninja.imgUrl}" width="100px" height="100px"></td>
+        <td th:text="${ninja.id}"></td>
+        <td th:text="${ninja.nome}"></td>
+        <td th:text="${ninja.idade}"></td>
+        <td th:text="${ninja.email}"></td>
+        <td th:text="${ninja.rank}"></td>
+
+        <td>
+          <a>Ver detalhes</a>
+          <a>Alterar</a>
+          <a href="@{/ninjas/ui/deletar/{id}}">Deletar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
