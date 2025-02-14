@@ -3,7 +3,6 @@ package dev.java10x.CadastroDeNinjas.Ninjas;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.CadastroDeNinjas.Equipamentos.EquipamentosModel;
 import jakarta.persistence.*;
-import lombok.ToString;
 
 import java.util.List;
 
@@ -12,7 +11,6 @@ import java.util.List;
 // JPA = Java Persistance API
 @Entity // Identifica uma Entidade de banco de dados
 @Table(name = "tb_cadastro") // Identifica a tabela de banco de dados e seu nome
-@ToString(exclude = "equipamentos")
 public class NinjaModel {
 
     @Id // Identifica que o atributo logo abaixo é um ID
@@ -109,5 +107,17 @@ public class NinjaModel {
 
     public void setEquipamentos(List<EquipamentosModel> equipamentos) {
         this.equipamentos = equipamentos;
+    }
+
+    @Override
+    public String toString() {
+        return "NinjaModel{" +
+                "idade=" + idade +
+                ", rank='" + rank + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", email='" + email + '\'' +
+                ", nome='" + nome + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

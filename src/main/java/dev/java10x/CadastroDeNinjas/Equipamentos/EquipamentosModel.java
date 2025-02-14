@@ -2,11 +2,9 @@ package dev.java10x.CadastroDeNinjas.Equipamentos;
 
 import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
-import lombok.ToString;
 
 @Entity
 @Table(name = "tb_equipamentos")
-@ToString
 public class EquipamentosModel {
 
     @Id
@@ -62,5 +60,15 @@ public class EquipamentosModel {
 
     public void setNinja(NinjaModel ninja) {
         this.ninja = ninja;
+    }
+
+    @Override
+    public String toString() {
+        return "EquipamentosModel{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", ninja=" + ninja +
+                '}';
     }
 }
